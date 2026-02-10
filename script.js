@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 這邊我根據你 GitHub 上的實際檔名做了修正
     // 注意：資料夾是大寫開頭，副檔名是 .jpeg
     const members = {
-        "薇娟": ["Miyeon/miyeon_01.jpeg", "Miyeon/miyeon_02.jpeg", "Miyeon/miyeon_03.jpeg", "Miyeon/miyeon_04.jpeg", "Miyeon/miyeon_05.jpeg"],
-        "米妮": ["Minnie/minnie_01.jpeg", "Minnie/minnie_02.jpeg", "Minnie/minnie_03.jpeg", "Minnie/minnie_04.jpeg", "Minnie/minnie_05.jpeg"],
-        "穗珍": ["Soojin/soojin_01.jpeg", "Soojin/soojin_02.jpeg", "Soojin/soojin_03.jpeg", "Soojin/soojin_04.jpeg", "Soojin/soojin_05.jpeg"],
-        "小娟": ["Soyeon/soyeon_01.jpeg", "Soyeon/soyeon_02.jpeg", "Soyeon/soyeon_03.jpeg", "Soyeon/soyeon_04.jpeg", "Soyeon/soyeon_05.jpeg"],
-        "雨琦": ["Yuqi/yuqi_01.jpeg", "Yuqi/yuqi_02.jpeg", "Yuqi/yuqi_03.jpeg", "Yuqi/yuqi_04.jpeg", "Yuqi/yuqi_05.jpeg"],
-        "舒華": ["Shuhua/shuhua_01.jpeg", "Shuhua/shuhua_02.jpeg", "Shuhua/shuhua_03.jpeg", "Shuhua/shuhua_04.jpeg", "Shuhua/shuhua_05.jpeg"]
+        "薇娟": ["Miyeon/miyeon_01.jpg", "Miyeon/miyeon_02.jpg", "Miyeon/miyeon_03.jpg", "Miyeon/miyeon_04.jpg", "Miyeon/miyeon_05.jpg"],
+        "米妮": ["Minnie/minnie_01.jpg", "Minnie/minnie_02.jpg", "Minnie/minnie_03.jpg", "Minnie/minnie_04.jpg", "Minnie/minnie_05.jpg"],
+        "穗珍": ["Soojin/soojin_01.jpg", "Soojin/soojin_02.jpg", "Soojin/soojin_03.jpg", "Soojin/soojin_04.jpg", "Soojin/soojin_05.jpg"],
+        "小娟": ["Soyeon/soyeon_01.jpg", "Soyeon/soyeon_02.jpg", "Soyeon/soyeon_03.jpg", "Soyeon/soyeon_04.jpg", "Soyeon/soyeon_05.jpg"],
+        "雨琦": ["Yuqi/yuqi_01.jpg", "Yuqi/yuqi_02.jpg", "Yuqi/yuqi_03.jpg", "Yuqi/yuqi_04.jpg", "Yuqi/yuqi_05.jpg"],
+        "舒華": ["Shuhua/shuhua_01.jpg", "Shuhua/shuhua_02.jpg", "Shuhua/shuhua_03.jpg", "Shuhua/shuhua_04.jpg", "Shuhua/shuhua_05.jpg"]
     };
 
     const cpDatabase = [
