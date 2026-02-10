@@ -133,21 +133,23 @@ h1 {
     background-color: #e64a9b;
 }
 
-/* Modal for Game Over */
+/* 預設狀態：完全隱藏 */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none; /* 這裡保留隱藏 */
+    position: fixed;
+    z-index: 100; /* 確保它在最前面 */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* 背景變暗一點更有質感 */
+    
+    /* 當我們之後在 JS 用程式碼把 display 改成 flex 時，以下屬性才會生效 */
     justify-content: center;
     align-items: center;
 }
+
+/* 這裡不需要動，JS 會負責切換 display */
 
 .modal-content {
     background-color: #fefefe;
