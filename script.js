@@ -9,13 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 所有的成員和她們的圖片檔案名 (你需要將圖片下載並放入 images/ 對應資料夾)
     // 範例: images/miyeon/miyeon_01.jpg
+    // 修正後的成員圖片清單
     const members = {
-        "薇娟": ["miyeon/miyeon_01.jpg", "miyeon/miyeon_02.jpg", "miyeon/miyeon_03.jpg", "miyeon/miyeon_04.jpg", "miyeon/miyeon_05.jpg"],
-        "米妮": ["minnie/minnie_01.jpg", "minnie/minnie_02.jpg", "minnie/minnie_03.jpg", "minnie/minnie_04.jpg", "minnie/minnie_05.jpg"],
-        "穗珍": ["soojin/soojin_01.jpg", "soojin/soojin_02.jpg", "soojin/soojin_03.jpg", "soojin/soojin_04.jpg", "soojin/soojin_05.jpg"],
-        "小娟": ["soyeon/soyeon_01.jpg", "soyeon/soyeon_02.jpg", "soyeon/soyeon_03.jpg", "soyeon/soyeon_04.jpg", "soyeon/soyeon_05.jpg"],
-        "雨琦": ["yuqi/yuqi_01.jpg", "yuqi/yuqi_02.jpg", "yuqi/yuqi_03.jpg", "yuqi/yuqi_04.jpg", "yuqi/yuqi_05.jpg"],
-        "舒華": ["shuhua/shuhua_01.jpg", "shuhua/shuhua_02.jpg", "shuhua/shuhua_03.jpg", "shuhua/shuhua_04.jpg", "shuhua/shuhua_05.jpg"]
+        "薇娟": ["Miyeon/miyeon_01.jpeg", "Miyeon/miyeon_02.jpeg", "Miyeon/miyeon_03.jpeg", "Miyeon/miyeon_04.jpeg", "Miyeon/miyeon_05.jpeg"],
+        "米妮": ["Minnie/minnie_01.jpeg", "Minnie/minnie_02.jpeg", "Minnie/minnie_03.jpeg", "Minnie/minnie_04.jpeg", "Minnie/minnie_05.jpeg"],
+        "穗珍": ["Soojin/soojin_01.jpeg", "Soojin/soojin_02.jpeg", "Soojin/soojin_03.jpeg", "Soojin/soojin_04.jpeg", "Soojin/soojin_05.jpeg"],
+        "小娟": ["Soyeon/soyeon_01.jpeg", "Soyeon/soyeon_02.jpeg", "Soyeon/soyeon_03.jpeg", "Soyeon/soyeon_04.jpeg", "Soyeon/soyeon_05.jpeg"],
+        "雨琦": ["Yuqi/yuqi_01.jpeg", "Yuqi/yuqi_02.jpeg", "Yuqi/yuqi_03.jpeg", "Yuqi/yuqi_04.jpeg", "Yuqi/yuqi_05.jpeg"],
+        "舒華": ["Shuhua/shuhua_01.jpeg", "Shuhua/shuhua_02.jpeg", "Shuhua/shuhua_03.jpeg", "Shuhua/shuhua_04.jpeg", "Shuhua/shuhua_05.jpeg"]
     };
 
     // CP 關係邏輯庫 (基於你提供的)
