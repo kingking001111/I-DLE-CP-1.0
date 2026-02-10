@@ -7,9 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameOverModal = document.getElementById('game-over-modal');
     const closeModalButton = document.getElementById('close-modal-button');
 
-    // 所有的成員和她們的圖片檔案名 (你需要將圖片下載並放入 images/ 對應資料夾)
-    // 範例: images/miyeon/miyeon_01.jpg
-    // 修正後的成員圖片清單
+    // 這邊我根據你 GitHub 上的實際檔名做了修正
+    // 注意：資料夾是大寫開頭，副檔名是 .jpeg
     const members = {
         "薇娟": ["Miyeon/miyeon_01.jpeg", "Miyeon/miyeon_02.jpeg", "Miyeon/miyeon_03.jpeg", "Miyeon/miyeon_04.jpeg", "Miyeon/miyeon_05.jpeg"],
         "米妮": ["Minnie/minnie_01.jpeg", "Minnie/minnie_02.jpeg", "Minnie/minnie_03.jpeg", "Minnie/minnie_04.jpeg", "Minnie/minnie_05.jpeg"],
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "舒華": ["Shuhua/shuhua_01.jpeg", "Shuhua/shuhua_02.jpeg", "Shuhua/shuhua_03.jpeg", "Shuhua/shuhua_04.jpeg", "Shuhua/shuhua_05.jpeg"]
     };
 
-    // CP 關係邏輯庫 (基於你提供的)
     const cpDatabase = [
         {"names": ["狗狗姊妹", "大姐Line", "麵查"], "pair": ["薇娟", "米妮"]},
         {"names": ["穗面CP"], "pair": ["薇娟", "穗珍"]},
@@ -38,13 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
         {"names": ["忙內Line"], "pair": ["雨琦", "舒華"]}
     ];
 
-    let cards = [];
     let flippedCards = [];
     let matchedPairs = 0;
-    let currentCP = null; // 當前需要配對的 CP
-    let availableCPs = []; // 尚未配對的 CP 列表
+    let currentCP = null;
+    let availableCPs = [];
 
-    // 輔助函數：隨機打亂陣列
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -53,147 +49,88 @@ document.addEventListener('DOMContentLoaded', () => {
         return array;
     }
 
-    // 初始化遊戲板
     function initializeGame() {
-        gameBoard.innerHTML = ''; // 清空遊戲板
-        cards = [];
+        gameBoard.innerHTML = '';
         flippedCards = [];
         matchedPairs = 0;
+        gameOverModal.style.display = 'none'; // 確保一開始是隱藏的
         
-        // 選擇所有可能的 CP 組合作為遊戲的「對子」
-        availableCPs = shuffle([...cpDatabase]); 
-        
-        // 為每個 CP 配對生成兩張卡牌
+        // 隨機選 8 組 CP 來玩，不然畫面會太擠
+        availableCPs = shuffle([...cpDatabase]).slice(0, 8); 
+        totalPairsSpan.textContent = availableCPs.length;
+
         let cardData = [];
-        const uniqueMembersInGame = new Set(); // 追蹤哪些成員的卡片被選入了這次遊戲
-
-        // 確保每個 CP 的兩位成員都能有卡片
         availableCPs.forEach(cp => {
-            const member1 = cp.pair[0];
-            const member2 = cp.pair[1];
-            
-            uniqueMembersInGame.add(member1);
-            uniqueMembersInGame.add(member2);
+            const m1 = cp.pair[0];
+            const m2 = cp.pair[1];
+            const img1 = members[m1][Math.floor(Math.random() * 5)];
+            const img2 = members[m2][Math.floor(Math.random() * 5)];
 
-            // 從每位成員的圖片庫中隨機選一張
-            const img1 = members[member1][Math.floor(Math.random() * members[member1].length)];
-            const img2 = members[member2][Math.floor(Math.random() * members[member2].length)];
-
-            cardData.push({ id: `${member1}_${Date.now()}_1`, member: member1, image: `./images/${img1}` });
-            cardData.push({ id: `${member2}_${Date.now()}_2`, member: member2, image: `./images/${img2}` });
+            cardData.push({ member: m1, image: `./images/${img1}` });
+            cardData.push({ member: m2, image: `./images/${img2}` });
         });
 
-        // 打亂所有卡牌
-        cardData = shuffle(cardData);
-
-        // 確保遊戲板的卡牌數量是偶數，且足以形成 CP
-        // 這個簡單的邏輯確保了至少有足夠的卡片來組成 CP
-        // 實際遊戲可能需要更複雜的邏片來保證所有 CP 都能被選中並有足夠卡片
-        
-        // 目前設計是所有 CP 都會生成卡片，但遊戲板只顯示一部分
-        // 為了簡化，我們先隨機選擇12-18張卡片，確保是偶數
-        const numCardsToDisplay = Math.min(cardData.length, 18); // 最多顯示18張
-        cardData = cardData.slice(0, numCardsToDisplay - (numCardsToDisplay % 2)); // 確保偶數
-
-        totalPairsSpan.textContent = availableCPs.length; // 顯示總共有多少 CP 需要配對
-
-        cardData.forEach(data => {
-            const cardElement = document.createElement('div');
-            cardElement.classList.add('card');
-            cardElement.dataset.member = data.member; // 記錄卡片是哪個成員
-            cardElement.dataset.id = data.id; // 唯一ID
-
-            cardElement.innerHTML = `
+        shuffle(cardData).forEach(data => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.dataset.member = data.member;
+            card.innerHTML = `
                 <div class="card-inner">
-                    <div class="card-back"></div>
-                    <div class="card-front"><img src="${data.image}" alt="${data.member}"></div>
-                </div>
-            `;
-            cardElement.addEventListener('click', () => flipCard(cardElement));
-            gameBoard.appendChild(cardElement);
-            cards.push(cardElement);
+                    <div class="card-back">?</div>
+                    <div class="card-front"><img src="${data.image}"></div>
+                </div>`;
+            card.addEventListener('click', () => flipCard(card));
+            gameBoard.appendChild(card);
         });
 
-        pickNewCPQuestion(); // 選一個新的 CP 題目
-        updateMatchedCount();
+        pickNewCPQuestion();
+        matchedCountSpan.textContent = "0";
     }
 
-    // 翻牌邏輯
     function flipCard(card) {
         if (flippedCards.length < 2 && !card.classList.contains('flipped') && !card.classList.contains('matched')) {
             card.classList.add('flipped');
             flippedCards.push(card);
-
-            if (flippedCards.length === 2) {
-                setTimeout(checkForMatch, 1000); // 1秒後檢查是否配對成功
-            }
+            if (flippedCards.length === 2) setTimeout(checkForMatch, 800);
         }
     }
 
-    // 檢查是否配對成功
     function checkForMatch() {
-        const [card1, card2] = flippedCards;
-        const member1 = card1.dataset.member;
-        const member2 = card2.dataset.member;
-
-        const targetCP = currentCP.pair; // 當前題目的 CP 成員
-
-        // 檢查是否符合題目的 CP 配對 (成員順序不重要)
-        const isMatch = (member1 === targetCP[0] && member2 === targetCP[1]) ||
-                        (member1 === targetCP[1] && member2 === targetCP[0]);
+        const [c1, c2] = flippedCards;
+        const target = currentCP.pair;
+        const isMatch = (c1.dataset.member === target[0] && c2.dataset.member === target[1]) ||
+                        (c1.dataset.member === target[1] && c2.dataset.member === target[0]);
 
         if (isMatch) {
-            card1.classList.add('matched');
-            card2.classList.add('matched');
+            c1.classList.add('matched');
+            c2.classList.add('matched');
             matchedPairs++;
-            updateMatchedCount();
-
-            // 從 availableCPs 中移除已配對的 CP
-            availableCPs = availableCPs.filter(cp => 
-                !(cp.pair.includes(targetCP[0]) && cp.pair.includes(targetCP[1]))
-            );
+            matchedCountSpan.textContent = matchedPairs;
+            
+            // 移除已完成的 CP
+            availableCPs = availableCPs.filter(cp => cp !== currentCP);
 
             if (availableCPs.length === 0) {
-                // 所有 CP 都配對成功，遊戲結束
-                gameOverModal.style.display = 'flex';
+                setTimeout(() => { gameOverModal.style.display = 'flex'; }, 500);
             } else {
-                pickNewCPQuestion(); // 繼續出下一個 CP 題目
+                pickNewCPQuestion();
             }
         } else {
-            // 不匹配，翻回去
-            card1.classList.remove('flipped');
-            card2.classList.remove('flipped');
+            c1.classList.remove('flipped');
+            c2.classList.remove('flipped');
         }
-        flippedCards = []; // 清空已翻的卡片
+        flippedCards = [];
     }
 
-    // 選擇新的 CP 題目
     function pickNewCPQuestion() {
         if (availableCPs.length > 0) {
-            const randomIndex = Math.floor(Math.random() * availableCPs.length);
-            currentCP = availableCPs[randomIndex];
-            // 隨機選一個 CP 名稱作為題目
-            const randomNameIndex = Math.floor(Math.random() * currentCP.names.length);
-            cpQuestionSpan.textContent = currentCP.names[randomNameIndex];
-        } else {
-            cpQuestionSpan.textContent = "所有CP都已配對！";
+            currentCP = availableCPs[Math.floor(Math.random() * availableCPs.length)];
+            cpQuestionSpan.textContent = currentCP.names[Math.floor(Math.random() * currentCP.names.length)];
         }
     }
 
-    // 更新配對計數
-    function updateMatchedCount() {
-        matchedCountSpan.textContent = matchedPairs;
-    }
-
-    // 重新開始遊戲
     resetButton.addEventListener('click', initializeGame);
+    closeModalButton.addEventListener('click', () => { gameOverModal.style.display = 'none'; initializeGame(); });
 
-    // 關閉遊戲結束彈窗
-    closeModalButton.addEventListener('click', () => {
-        gameOverModal.style.display = 'none';
-        initializeGame(); // 關閉彈窗後重新開始遊戲
-    });
-
-    // 初始啟動遊戲
     initializeGame();
 });
