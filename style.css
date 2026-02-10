@@ -1,0 +1,186 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+    color: #333;
+    background-image: url('images/bg_pattern.png'); /* 你可以自行設計背景圖 */
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.game-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+}
+
+h1 {
+    color: #8a2be2; /* 紫羅蘭色，符合女團風格 */
+    margin-bottom: 20px;
+}
+
+.question-area {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #e0e7ff;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #5a1e9d;
+}
+
+#cp-question {
+    color: #d81b60; /* 粉色系，更突出 CP 名稱 */
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 列 */
+    grid-gap: 15px;
+    margin-bottom: 30px;
+}
+
+.card {
+    width: 120px; /* 調整卡片大小 */
+    height: 120px;
+    background-color: #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure image fits */
+}
+
+.card-front {
+    background-color: #fff;
+    color: #333;
+    transform: rotateY(180deg);
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the card area */
+    border-radius: 10px;
+}
+
+.card-back {
+    background-color: #b0c4de; /* 卡片背面顏色 */
+    color: white;
+    font-size: 2em;
+    background-image: url('images/card_back.png'); /* 自行設計卡片背面圖案 */
+    background-size: cover;
+    background-position: center;
+}
+
+.card.matched {
+    visibility: hidden; /* Hide matched cards */
+}
+
+.game-info {
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+#reset-button {
+    background-color: #ff69b4; /* 熱情粉色 */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#reset-button:hover {
+    background-color: #e64a9b;
+}
+
+/* Modal for Game Over */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 80%;
+}
+
+.modal-content h2 {
+    color: #8a2be2;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+#close-modal-button {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+#close-modal-button:hover {
+    background-color: #e64a9b;
+}
