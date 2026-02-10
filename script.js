@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameOverModal = document.getElementById('game-over-modal');
     const closeModalButton = document.getElementById('close-modal-button');
 
-    // 這邊我根據你 GitHub 上的實際檔名做了修正
-    // 注意：資料夾是大寫開頭，副檔名是 .jpeg
+    // 全小寫純淨版：對齊你的小寫資料夾與小寫 jpg 檔名
     const members = {
-        "薇娟": ["Miyeon/miyeon_01.jpg", "Miyeon/miyeon_02.jpg", "Miyeon/miyeon_03.jpg", "Miyeon/miyeon_04.jpg", "Miyeon/miyeon_05.jpg"],
-        "米妮": ["Minnie/minnie_01.jpg", "Minnie/minnie_02.jpg", "Minnie/minnie_03.jpg", "Minnie/minnie_04.jpg", "Minnie/minnie_05.jpg"],
-        "穗珍": ["Soojin/soojin_01.jpg", "Soojin/soojin_02.jpg", "Soojin/soojin_03.jpg", "Soojin/soojin_04.jpg", "Soojin/soojin_05.jpg"],
-        "小娟": ["Soyeon/soyeon_01.jpg", "Soyeon/soyeon_02.jpg", "Soyeon/soyeon_03.jpg", "Soyeon/soyeon_04.jpg", "Soyeon/soyeon_05.jpg"],
-        "雨琦": ["Yuqi/yuqi_01.jpg", "Yuqi/yuqi_02.jpg", "Yuqi/yuqi_03.jpg", "Yuqi/yuqi_04.jpg", "Yuqi/yuqi_05.jpg"],
-        "舒華": ["Shuhua/shuhua_01.jpg", "Shuhua/shuhua_02.jpg", "Shuhua/shuhua_03.jpg", "Shuhua/shuhua_04.jpg", "Shuhua/shuhua_05.jpg"]
+        "薇娟": ["miyeon/miyeon_01.jpg", "miyeon/miyeon_02.jpg", "miyeon/miyeon_03.jpg", "miyeon/miyeon_04.jpg", "miyeon/miyeon_05.jpg"],
+        "米妮": ["minnie/minnie_01.jpg", "minnie/minnie_02.jpg", "minnie/minnie_03.jpg", "minnie/minnie_04.jpg", "minnie/minnie_05.jpg"],
+        "穗珍": ["soojin/soojin_01.jpg", "soojin/soojin_02.jpg", "soojin/soojin_03.jpg", "soojin/soojin_04.jpg", "soojin/soojin_05.jpg"],
+        "小娟": ["soyeon/soyeon_01.jpg", "soyeon/soyeon_02.jpg", "soyeon/soyeon_03.jpg", "soyeon/soyeon_04.jpg", "soyeon/soyeon_05.jpg"],
+        "雨琦": ["yuqi/yuqi_01.jpg", "yuqi/yuqi_02.jpg", "yuqi/yuqi_03.jpg", "yuqi/yuqi_04.jpg", "yuqi/yuqi_05.jpg"],
+        "舒華": ["shuhua/shuhua_01.jpg", "shuhua/shuhua_02.jpg", "shuhua/shuhua_03.jpg", "shuhua/shuhua_04.jpg", "shuhua/shuhua_05.jpg"]
     };
 
     const cpDatabase = [
