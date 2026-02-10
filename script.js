@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const img1 = members[member1][Math.floor(Math.random() * members[member1].length)];
             const img2 = members[member2][Math.floor(Math.random() * members[member2].length)];
 
-            cardData.push({ id: `${member1}_${Date.now()}_1`, member: member1, image: `images/${img1}` });
-            cardData.push({ id: `${member2}_${Date.now()}_2`, member: member2, image: `images/${img2}` });
+            cardData.push({ id: `${member1}_${Date.now()}_1`, member: member1, image: `./images/${img1}` });
+            cardData.push({ id: `${member2}_${Date.now()}_2`, member: member2, image: `./images/${img2}` });
         });
 
         // 打亂所有卡牌
